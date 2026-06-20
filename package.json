@@ -1,7 +1,7 @@
 {
 	"name": "@kaged/plugin-types",
-	"description": "Pure interface package — SystemPlugin lifecycle hooks, SystemPluginContext, DaemonHooks payload types, and PluginLogger consumed by daemon and system plugins",
-	"version": "0.0.1",
+	"description": "Pure interface package — SystemPlugin lifecycle hooks, SystemPluginContext, DaemonHooks payload types, PluginLogger, and the notification channel contract consumed by daemon and system plugins",
+	"version": "0.0.2",
 	"license": "AGPL-3.0",
 	"repository": {
 		"type": "git",

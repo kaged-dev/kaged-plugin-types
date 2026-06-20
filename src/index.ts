@@ -43,6 +43,18 @@ export interface DaemonHooks {
 
 	/** Fires when the plugin's own config section in local.toml changes. */
 	"config.updated": (newConfig: Record<string, unknown>) => void | Promise<void>;
+
+	/**
+	 * Fires at daemon startup once the notification router is ready (after `daemon.ready`).
+	 * The plugin registers its channel(s) by calling `registrar.register(channel)`.
+	 * Hooks fire in plugin-load order. Registration is idempotent on `channel.id`
+	 * (later registration with the same id replaces the earlier — useful for hot reload).
+	 *
+	 * Added in v0.0.2. See `./notifications.ts` for the channel contract.
+	 */
+	"notification.channel.register": (
+		registrar: import("./notifications.ts").NotificationChannelRegistrar,
+	) => void | Promise<void>;
 }
 
 /** Union of all hook names. */
@@ -118,3 +130,18 @@ export interface SystemPlugin {
 
 /** Runtime state of a loaded (or failed) system plugin. */
 export type SystemPluginState = "disabled" | "loading" | "active" | "stopped" | "failed";
+
+// ── Notification channel contract (v0.0.2) ─────────────────────────────
+
+export type {
+	AttentionKind,
+	ChannelContext,
+	DeliveryOutcome,
+	NotificationChannel,
+	NotificationChannelDescriptor,
+	NotificationChannelRegistrar,
+	NotificationClass,
+	NotificationEvent,
+	RunOutcome,
+	SessionBellValue,
+} from "./notifications.ts";

@@ -66,7 +66,8 @@ describe("plugin-types", () => {
 			"daemon.ready": (_info: DaemonReadyInfo) => {},
 			"daemon.shutdown": () => {},
 			"config.updated": (_cfg: Record<string, unknown>) => {},
+			"notification.channel.register": (_registrar) => {},
 		};
-		expect(Object.keys(hooks)).toHaveLength(5);
+		expect(Object.keys(hooks)).toHaveLength(6);
 	});
 });
